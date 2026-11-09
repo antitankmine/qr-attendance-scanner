@@ -1,6 +1,6 @@
 # qr-attendance-scanner
 
-A simple android application that is used to check the attendance of students in small to large institutions. 
+A simple Java-based android application that is used to check the attendance of students in small to large institutions. 
 
 # Features
 - Mass QR code generation for classes, only needing to input the student's name, and any unique number identifier. 
