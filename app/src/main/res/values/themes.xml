@@ -1,5 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+gi<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Schoolthing" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Schoolthing" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">#1E88E5</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#2E7D32</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="android:statusBarColor">#1976D2</item>
+    </style>
+
 </resources>
