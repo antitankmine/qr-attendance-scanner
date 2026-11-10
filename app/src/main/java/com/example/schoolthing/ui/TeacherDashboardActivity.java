@@ -2,17 +2,18 @@ package com.example.schoolthing.ui;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.schoolthing.data.model.AttendanceStatus;
-import com.example.schoolthing.data.model.AttendanceType;
+import com.example.schoolthing.data.local.ScanRecordEntity;
 import com.example.schoolthing.data.repository.AttendanceRepository;
 import com.example.schoolthing.databinding.ActivityTeacherDashboardBinding;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
- * Teacher Dashboard Activity for classroom attendance roster & exception management.
+ * Teacher Dashboard Activity for barebones classroom attendance view.
  */
 public class TeacherDashboardActivity extends AppCompatActivity {
 
@@ -20,6 +21,7 @@ public class TeacherDashboardActivity extends AppCompatActivity {
     private AttendanceRepository repository;
     private final List<String> rosterList = new ArrayList<>();
     private ArrayAdapter<String> adapter;
+    private final SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a", Locale.US);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,29 +31,53 @@ public class TeacherDashboardActivity extends AppCompatActivity {
 
         repository = new AttendanceRepository(this);
 
-        setupRosterData();
-
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, rosterList);
         binding.listViewRoster.setAdapter(adapter);
 
-        binding.listViewRoster.setOnItemClickListener((parent, view, position, id) -> {
-            String selected = rosterList.get(position);
-            // Toggle manual exception check-in
-            if (selected.contains("Alex Rivera")) {
-                repository.recordScan("STU-2026-9812", "Alex Rivera", AttendanceType.CLASS_CHECKIN, AttendanceStatus.PRESENT);
-                Toast.makeText(this, "Updated Alex Rivera to PRESENT", Toast.LENGTH_SHORT).show();
-            } else if (selected.contains("Jordan Lee")) {
-                repository.recordScan("STU-2026-3401", "Jordan Lee", AttendanceType.CLASS_CHECKIN, AttendanceStatus.LATE);
-                Toast.makeText(this, "Updated Jordan Lee to LATE", Toast.LENGTH_SHORT).show();
-            }
-        });
+        loadClassroomRoster();
     }
 
-    private void setupRosterData() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadClassroomRoster();
+    }
+
+    private void loadClassroomRoster() {
         rosterList.clear();
-        rosterList.add("✅ Alex Rivera (STU-2026-9812) — Present (08:02 AM)");
-        rosterList.add("⚠️ Jordan Lee (STU-2026-3401) — Late (08:16 AM)");
-        rosterList.add("✅ Sam Taylor (STU-2026-5519) — Present (07:55 AM)");
-        rosterList.add("❌ Morgan Vance (STU-2026-7720) — Unexcused Absence");
+        List<ScanRecordEntity> scans = repository.getAllScans();
+
+        int present = 0;
+        int late = 0;
+        int unexcused = 0;
+
+        if (scans.isEmpty()) {
+            rosterList.add("No attendance records logged yet.");
+        } else {
+            for (ScanRecordEntity scan : scans) {
+                String timeStr = timeFormat.format(new Date(scan.getTimestamp()));
+                String statusStr = scan.getAttendanceStatus();
+                String badge = "•";
+
+                if ("PRESENT".equalsIgnoreCase(statusStr)) {
+                    badge = "✓";
+                    present++;
+                } else if ("LATE".equalsIgnoreCase(statusStr)) {
+                    badge = "⚠️";
+                    late++;
+                } else {
+                    badge = "✕";
+                    unexcused++;
+                }
+
+                rosterList.add(badge + " " + scan.getStudentName() + " (" + scan.getStudentId() + ") — " + statusStr + " (" + timeStr + ")");
+            }
+        }
+
+        binding.tvPresentCount.setText(String.valueOf(present));
+        binding.tvLateCount.setText(String.valueOf(late));
+        binding.tvUnexcusedCount.setText(String.valueOf(unexcused));
+
+        adapter.notifyDataSetChanged();
     }
 }

@@ -32,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="🛡️ Gate Guard Scanner"
+            android:text="Gate Guard Scanner"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -47,7 +47,7 @@
             app:strokeColor="#FFFFFF" />
     </LinearLayout>
 
-    <!-- Bottom Status Banner & Actions -->
+    <!-- Bottom Status Banner -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,8 +61,7 @@
             android:id="@+id/cardFeedback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:cardBackgroundColor="#2E7D32"
             app:cardCornerRadius="12dp">
 
@@ -86,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Student: Alex Rivera (STU-2026-9812)\nType: Campus Entry"
+                    android:text="Student Details"
                     android:textColor="#E8F5E9"
                     android:textSize="14sp" />
 
@@ -101,33 +100,6 @@
                     android:textStyle="italic" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
-
-        <!-- Simulation Quick Buttons for Demonstration/Testing -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnSimulateValid"
-                style="@style/Widget.Material3.Button.TonalButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
-                android:layout_weight="1"
-                android:text="Simulate Scan"
-                android:textSize="12sp" />
-
-            <Button
-                android:id="@+id/btnSimulateLate"
-                style="@style/Widget.Material3.Button.TonalButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_weight="1"
-                android:text="Simulate Late"
-                android:textSize="12sp" />
-        </LinearLayout>
 
     </LinearLayout>
 

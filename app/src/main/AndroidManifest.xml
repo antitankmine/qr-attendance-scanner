@@ -20,14 +20,24 @@
         android:theme="@style/Theme.Schoolthing">
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.LoginActivity"
             android:exported="true"
-            android:label="QR Attendance Scanner">
+            android:label="QR Attendance Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.SignUpActivity"
+            android:exported="false"
+            android:label="Sign Up" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="QR Attendance Scanner Portal" />
 
         <activity
             android:name=".ui.StudentQrActivity"

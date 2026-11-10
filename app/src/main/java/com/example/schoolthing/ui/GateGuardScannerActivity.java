@@ -57,16 +57,6 @@ public class GateGuardScannerActivity extends AppCompatActivity {
 
         binding.btnToggleFlash.setOnClickListener(v -> toggleFlash());
 
-        binding.btnSimulateValid.setOnClickListener(v -> {
-            String payload = QrCryptoUtils.generatePayload("STU-2026-9812", "Alex Rivera");
-            processQrCode(payload);
-        });
-
-        binding.btnSimulateLate.setOnClickListener(v -> {
-            // Process late check-in
-            handleScanResult("STU-2026-3401", "Jordan Lee", AttendanceStatus.LATE);
-        });
-
         if (checkCameraPermission()) {
             startCamera();
         } else {

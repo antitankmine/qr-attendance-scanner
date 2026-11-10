@@ -4,27 +4,31 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.schoolthing.data.local.UserManager;
 import com.example.schoolthing.databinding.ActivityStudentQrBinding;
 import com.example.schoolthing.security.QrCryptoUtils;
 import com.google.zxing.BarcodeFormat;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 /**
- * Student Pass Activity rendering dynamic time-sensitive QR code.
+ * Student Pass Activity rendering dynamic time-sensitive QR code for the logged in student.
  */
 public class StudentQrActivity extends AppCompatActivity {
 
     private ActivityStudentQrBinding binding;
     private CountDownTimer timer;
     private static final int WINDOW_SECONDS = 30;
-    private final String studentId = "STU-2026-9812";
-    private final String studentName = "Alex Rivera";
+    private String studentId;
+    private String studentName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityStudentQrBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        studentName = UserManager.getSavedName(this);
+        studentId = UserManager.getSavedId(this);
 
         binding.tvStudentName.setText("Student: " + studentName);
         binding.tvStudentId.setText("ID: " + studentId);

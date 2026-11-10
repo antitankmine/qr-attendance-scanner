@@ -31,13 +31,6 @@
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Secure • Dynamic QR • Offline-First Sync"
-                android:textColor="#E3F2FD"
-                android:textSize="14sp" />
         </LinearLayout>
 
         <TextView
@@ -70,18 +63,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="🎓 Student Dynamic Pass"
+                    android:text="Student Dynamic Pass"
                     android:textColor="#1E88E5"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Generate time-sensitive dynamic QR pass for campus gate &amp; classroom check-ins."
-                    android:textColor="#616161"
-                    android:textSize="13sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -105,18 +91,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="🛡️ Gate Guard Scanner"
+                    android:text="Gate Guard Scanner"
                     android:textColor="#2E7D32"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Camera scanner with instant status feedback (Green/Yellow/Red) &amp; offline SQLite queue."
-                    android:textColor="#616161"
-                    android:textSize="13sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -140,18 +119,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="📋 Teacher Dashboard"
+                    android:text="Teacher Dashboard"
                     android:textColor="#F57F17"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Classroom roll call, exception management, and manual attendance overrides."
-                    android:textColor="#616161"
-                    android:textSize="13sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -175,18 +147,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="⚙️ Admin Console"
+                    android:text="Admin Console"
                     android:textColor="#D32F2F"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Audit logs, offline queue monitoring, and manual REST sync execution."
-                    android:textColor="#616161"
-                    android:textSize="13sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

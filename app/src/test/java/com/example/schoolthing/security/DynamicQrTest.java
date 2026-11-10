@@ -14,7 +14,7 @@ public class DynamicQrTest {
     @Test
     public void generateAndVerifyValidQrPass() {
         String studentId = "STU-2026-9812";
-        String studentName = "Alex Rivera";
+        String studentName = "Angry Daniel";
 
         String payload = QrCryptoUtils.generatePayload(studentId, studentName);
         assertNotNull(payload);
@@ -28,7 +28,7 @@ public class DynamicQrTest {
 
     @Test
     public void rejectTamperedSignature() {
-        String payload = QrCryptoUtils.generatePayload("STU-2026-9812", "Alex Rivera");
+        String payload = QrCryptoUtils.generatePayload("STU-2026-9812", "Angry Daniel");
         // Tamper with payload student ID
         String tamperedPayload = payload.replace("STU-2026-9812", "STU-FAKE-9999");
 
