@@ -9,31 +9,35 @@
         android:id="@+id/etStudentName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Full Name"
-        android:inputType="textPersonName" />
+        android:hint="@string/hint_full_name"
+        android:inputType="textPersonName"
+        android:autofillHints="name"  />
 
     <EditText
         android:id="@+id/etStudentId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="Student ID Number"
-        android:inputType="text" />
+        android:hint="@string/hint_student_staff_id"
+        android:inputType="text"
+        android:importantForAutofill="no"  />
 
     <EditText
         android:id="@+id/etStudentEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="Email Address"
-        android:inputType="textEmailAddress" />
+        android:hint="@string/hint_email_address"
+        android:inputType="textEmailAddress"
+        android:autofillHints="emailAddress"  />
 
     <EditText
         android:id="@+id/etStudentPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="Password"
-        android:inputType="textPassword" />
+        android:hint="@string/hint_password"
+        android:inputType="textPassword"
+        android:autofillHints="password"  />
 
 </LinearLayout>

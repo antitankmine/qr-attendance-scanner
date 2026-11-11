@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F7FA"
@@ -19,7 +20,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Gate Guard Scanner"
+            android:text="@string/gate_guard_title"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -29,7 +30,7 @@
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Flash"
+            android:text="@string/btn_flash"
             android:textColor="#FFFFFF"
             app:strokeColor="#FFFFFF" />
     </LinearLayout>
@@ -61,7 +62,7 @@
                 android:id="@+id/tvStatusTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ENTRY APPROVED"
+                tools:text="ENTRY APPROVED"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -71,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="Student Details"
+                tools:text="Student Details"
                 android:textColor="#E8F5E9"
                 android:textSize="13sp" />
         </LinearLayout>
@@ -84,7 +85,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="4dp"
-        android:text="Today's Scanned Accounts"
+        android:text="@string/todays_scanned_accounts"
         android:textColor="#37474F"
         android:textSize="15sp"
         android:textStyle="bold" />

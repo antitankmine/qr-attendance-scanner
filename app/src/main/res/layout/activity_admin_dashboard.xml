@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F7FA"
@@ -29,7 +30,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Administrator Console"
+                    android:text="@string/admin_console_title"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -38,7 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="User Management • Attendance Cutoff Times • Active Campus Report"
+                    android:text="@string/admin_console_subtitle"
                     android:textColor="#FFEBEE"
                     android:textSize="13sp" />
             </LinearLayout>
@@ -61,7 +62,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Account Management"
+                    android:text="@string/account_management_title"
                     android:textColor="#212121"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -79,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="4dp"
                         android:layout_weight="1"
-                        android:text="Create Account"
+                        android:text="@string/btn_create_account"
                         android:textSize="12sp"
                         app:backgroundTint="#D32F2F" />
 
@@ -90,7 +91,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:layout_weight="1"
-                        android:text="Revoke Account"
+                        android:text="@string/btn_revoke_account"
                         android:textColor="#D32F2F"
                         android:textSize="12sp"
                         app:strokeColor="#D32F2F" />
@@ -115,7 +116,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Attendance Cutoff Time Configuration"
+                    android:text="@string/cutoff_config_title"
                     android:textColor="#212121"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -133,7 +134,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="4dp"
                         android:layout_weight="1"
-                        android:hint="Late Cutoff Time">
+                        android:hint="@string/label_late_cutoff">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etLateThreshold"
@@ -142,7 +143,7 @@
                             android:clickable="true"
                             android:focusable="false"
                             android:inputType="none"
-                            android:text="08:15 AM" />
+                            tools:text="08:15 AM" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -151,7 +152,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:layout_weight="1"
-                        android:hint="Absent Cutoff Time">
+                        android:hint="@string/label_absent_cutoff">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etAbsentThreshold"
@@ -160,7 +161,7 @@
                             android:clickable="true"
                             android:focusable="false"
                             android:inputType="none"
-                            android:text="08:30 AM" />
+                            tools:text="08:30 AM" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
@@ -170,7 +171,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Save Cutoff Time Settings"
+                    android:text="@string/btn_save_cutoff"
                     android:textSize="12sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -180,7 +181,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="Active On-Campus (Scanned IN, Not OUT)"
+            android:text="@string/active_campus_report_title"
             android:textColor="#37474F"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -190,7 +191,9 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:divider="@android:color/transparent"
-            android:dividerHeight="6dp" />
+            android:dividerHeight="6dp"
+            android:nestedScrollingEnabled="true"
+            tools:ignore="NestedScrolling" />
 
     </LinearLayout>
 </ScrollView>

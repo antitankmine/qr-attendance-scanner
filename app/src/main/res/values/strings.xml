@@ -7,4 +7,53 @@
     <string name="label_unexcused">Unexcused</string>
     <string name="label_excused">Excused</string>
     <string name="roster_section_title">Class Roster &amp; Exception Overrides</string>
+
+    <!-- Admin Dashboard Static Labels -->
+<string name="admin_console_title">Administrator Console</string>
+<string name="admin_console_subtitle">User Management • Attendance Cutoff Times • Active Campus Report</string>
+<string name="account_management_title">Account Management</string>
+    <string name="active_campus_report_title">Active On-Campus (Scanned IN, Not OUT)</string>
+    <string name="btn_create_account">Create Account</string>
+<string name="btn_revoke_account">Revoke Account</string>
+<string name="cutoff_config_title">Attendance Cutoff Time Configuration</string>
+<string name="label_late_cutoff">Late Cutoff Time</string>
+<string name="label_absent_cutoff">Absent Cutoff Time</string>
+<string name="btn_save_cutoff">Save Cutoff Time Settings</string>
+
+    <!-- Gate Guard Scanner Static Labels -->
+    <string name="gate_guard_title">Gate Guard Scanner</string>
+    <string name="btn_flash">Flash</string>
+    <string name="todays_scanned_accounts">Today\'s Scanned Accounts</string>
+
+    <!-- Login Screen Static Labels -->
+    <string name="login_title">QR Attendance</string>
+    <string name="login_subtitle">Sign in to your account</string>
+    <string name="hint_email_or_id">Email / Student ID</string>
+    <string name="hint_password">Password</string>
+    <string name="label_select_role">Select Portal Role</string>
+    <string name="btn_log_in">Log In</string>
+    <string name="prompt_sign_up">Don\'t have an account? Sign Up</string>
+
+    <!-- Main Screen Static Labels -->
+    <string name="main_header_title">QR Attendance Scanner</string>
+    <string name="select_role_portal">Select Role Portal</string>
+    <string name="role_student_pass">Student Dynamic Pass</string>
+    <string name="role_teacher_dashboard">Teacher Dashboard</string>
+    <string name="role_admin_console">Admin Console</string>
+
+    <!-- Sign Up Screen Static Labels -->
+    <string name="signup_subtitle">Register your user profile &amp; role</string>
+    <string name="hint_full_name">Full Name</string>
+    <string name="hint_student_staff_id">Student / Staff ID Number</string>
+    <string name="hint_email_address">Email Address</string>
+    <string name="label_account_role">Account Role</string>
+    <string name="prompt_log_in">Already have an account? Log In</string>
+
+    <!-- Student QR Pass Screen Static Labels -->
+    <string name="student_pass_title">Student Pass</string>
+    <string name="student_pass_subtitle">Dynamic QR Code Pass</string>
+    <string name="qr_code_desc">Dynamic QR Code Pass</string>
+    <string name="btn_change_password">Change Password</string>
+    <string name="my_attendance_history">My Attendance History</string>
+
 </resources>

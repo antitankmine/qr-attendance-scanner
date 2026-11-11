@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F7FA"
@@ -16,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Student Pass"
+            android:text="@string/student_pass_title"
             android:textColor="#1976D2"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -25,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="Dynamic QR Code Pass"
+            android:text="@string/student_pass_subtitle"
             android:textColor="#757575"
             android:textSize="13sp" />
 
@@ -48,14 +49,14 @@
                     android:id="@+id/imgQrCode"
                     android:layout_width="240dp"
                     android:layout_height="240dp"
-                    android:contentDescription="Dynamic QR Code Pass" />
+                    android:contentDescription="@string/qr_code_desc" />
 
                 <TextView
                     android:id="@+id/tvTimer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Refreshes in: 30s"
+                    tools:text="Refreshes in: 30s"
                     android:textColor="#D32F2F"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -90,7 +91,7 @@
                     android:id="@+id/tvStudentName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Student Name"
+                    tools:text="Student Name"
                     android:textColor="#212121"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -100,7 +101,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="ID: "
+                    tools:text="ID: "
                     android:textColor="#616161"
                     android:textSize="13sp" />
 
@@ -110,7 +111,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Change Password"
+                    android:text="@string/btn_change_password"
                     android:textSize="12sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -121,7 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
-            android:text="My Attendance History"
+            android:text="@string/my_attendance_history"
             android:textColor="#37474F"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -131,7 +132,10 @@
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:divider="@android:color/transparent"
-            android:dividerHeight="6dp" />
+            android:dividerHeight="6dp"
+            android:nestedScrollingEnabled="true"
+            tools:ignore="NestedScrolling"
+            />
 
     </LinearLayout>
 </ScrollView>

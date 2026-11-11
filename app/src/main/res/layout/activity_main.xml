@@ -26,7 +26,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="QR Attendance Scanner"
+                android:text="@string/main_header_title"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="16dp"
-            android:text="Select Role Portal"
+            android:text="@string/select_role_portal"
             android:textColor="#37474F"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -63,7 +63,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Student Dynamic Pass"
+                    android:text="@string/role_student_pass"
                     android:textColor="#1E88E5"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -91,7 +91,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gate Guard Scanner"
+                    android:text="@string/gate_guard_title"
                     android:textColor="#2E7D32"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -119,7 +119,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Teacher Dashboard"
+                    android:text="@string/role_teacher_dashboard"
                     android:textColor="#F57F17"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -147,7 +147,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Admin Console"
+                    android:text="@string/role_admin_console"
                     android:textColor="#D32F2F"
                     android:textSize="18sp"
                     android:textStyle="bold" />
