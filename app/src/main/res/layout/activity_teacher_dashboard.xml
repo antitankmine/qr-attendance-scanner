@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F7FA"
@@ -24,7 +25,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Teacher Classroom Portal"
+                android:text="@string/teacher_portal_title"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -33,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="CS 101 • Data Structures &amp; Algorithms"
+                tools:text="CS 101 • Data Structures &amp; Algorithms"
                 android:textColor="#FFFDE7"
                 android:textSize="15sp" />
 
@@ -41,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="Room 302 • Schedule: 08:00 AM - 10:00 AM"
+                tools:text="Room 302 • Schedule: 08:00 AM - 10:00 AM"
                 android:textColor="#FFFDE7"
                 android:textSize="13sp" />
         </LinearLayout>
@@ -73,7 +74,7 @@
                     android:id="@+id/tvPresentCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2"
+                    tools:text="2"
                     android:textColor="#2E7D32"
                     android:textSize="22sp"
                     android:textStyle="bold" />
@@ -81,7 +82,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Present"
+                    android:text="@string/label_present"
                     android:textColor="#616161"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -106,7 +107,7 @@
                     android:id="@+id/tvLateCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1"
+                    tools:text="1"
                     android:textColor="#F57F17"
                     android:textSize="22sp"
                     android:textStyle="bold" />
@@ -114,7 +115,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Late"
+                    android:text="@string/label_late"
                     android:textColor="#616161"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -139,7 +140,7 @@
                     android:id="@+id/tvUnexcusedCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    tools:text="0"
                     android:textColor="#C62828"
                     android:textSize="22sp"
                     android:textStyle="bold" />
@@ -147,7 +148,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Unexcused"
+                    android:text="@string/label_unexcused"
                     android:textColor="#616161"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -158,7 +159,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Class Roster &amp; Exception Overrides"
+        android:text="@string/roster_section_title"
         android:textColor="#37474F"
         android:textSize="16sp"
         android:textStyle="bold" />
