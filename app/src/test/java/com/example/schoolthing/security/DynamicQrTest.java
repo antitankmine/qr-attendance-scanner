@@ -13,8 +13,8 @@ public class DynamicQrTest {
 
     @Test
     public void generateAndVerifyValidQrPass() {
-        String studentId = "STU-2026-9812";
-        String studentName = "Angry Daniel";
+        String studentId = "STU-1001";
+        String studentName = "User One";
 
         String payload = QrCryptoUtils.generatePayload(studentId, studentName);
         assertNotNull(payload);
@@ -28,9 +28,9 @@ public class DynamicQrTest {
 
     @Test
     public void rejectTamperedSignature() {
-        String payload = QrCryptoUtils.generatePayload("STU-2026-9812", "Angry Daniel");
+        String payload = QrCryptoUtils.generatePayload("STU-1001", "User One");
         // Tamper with payload student ID
-        String tamperedPayload = payload.replace("STU-2026-9812", "STU-FAKE-9999");
+        String tamperedPayload = payload.replace("STU-1001", "STU-FAKE-9999");
 
         DynamicQrPass pass = QrCryptoUtils.parseAndVerify(tamperedPayload);
         assertNull("Tampered payload signature should be rejected", pass);

@@ -61,6 +61,12 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
 
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.database)
+
     // Compose & Core
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)

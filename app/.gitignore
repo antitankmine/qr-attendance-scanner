@@ -1,1 +1,9 @@
 /build
+
+# Sensitive files - DO NOT push to Git
+google-services.json
+*.keystore
+*.jks
+*.pk8
+*.pem
+secrets.properties

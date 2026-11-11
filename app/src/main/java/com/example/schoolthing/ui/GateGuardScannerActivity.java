@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,8 +17,10 @@ import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import com.example.schoolthing.data.local.ScanRecordEntity;
 import com.example.schoolthing.data.model.AttendanceStatus;
 import com.example.schoolthing.data.model.AttendanceType;
+import com.example.schoolthing.data.remote.FirebaseManager;
 import com.example.schoolthing.data.repository.AttendanceRepository;
 import com.example.schoolthing.databinding.ActivityGateGuardScannerBinding;
 import com.example.schoolthing.security.DynamicQrPass;
@@ -29,12 +32,18 @@ import com.google.zxing.PlanarYUVLuminanceSource;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
 import java.nio.ByteBuffer;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Gate Guard Camera Scanning Activity with CameraX and ZXing.
+ * Gate Guard Camera Scanning Activity with CameraX, ZXing,
+ * and Today's Previously Scanned Accounts history view.
  */
 public class GateGuardScannerActivity extends AppCompatActivity {
 
@@ -46,6 +55,10 @@ public class GateGuardScannerActivity extends AppCompatActivity {
     private ExecutorService cameraExecutor;
     private long lastScanTime = 0;
 
+    private final List<String> todayScansList = new ArrayList<>();
+    private ArrayAdapter<String> todayScansAdapter;
+    private final SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss a", Locale.US);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +68,12 @@ public class GateGuardScannerActivity extends AppCompatActivity {
         repository = new AttendanceRepository(this);
         cameraExecutor = Executors.newSingleThreadExecutor();
 
+        todayScansAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, todayScansList);
+        binding.listViewTodayScans.setAdapter(todayScansAdapter);
+
         binding.btnToggleFlash.setOnClickListener(v -> toggleFlash());
+
+        loadTodayScannedAccounts();
 
         if (checkCameraPermission()) {
             startCamera();
@@ -152,9 +170,18 @@ public class GateGuardScannerActivity extends AppCompatActivity {
     }
 
     private void handleScanResult(String studentId, String studentName, AttendanceStatus status) {
-        // Enqueue scan into Room database
-        repository.recordScan(studentId, studentName, AttendanceType.CAMPUS_ENTRY, status);
-        int unsyncedCount = repository.getUnsyncedCount();
+        // Log scan in Firebase and local Room database
+        FirebaseManager.getInstance().logScan(this, studentId, studentName, AttendanceType.CAMPUS_ENTRY.name(), status.name(), new FirebaseManager.Callback<Boolean>() {
+            @Override
+            public void onSuccess(Boolean result) {
+                loadTodayScannedAccounts();
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                loadTodayScannedAccounts();
+            }
+        });
 
         binding.cardFeedback.setVisibility(View.VISIBLE);
         binding.cardFeedback.setCardBackgroundColor(Color.parseColor(status.getHexColor()));
@@ -167,8 +194,22 @@ public class GateGuardScannerActivity extends AppCompatActivity {
             binding.tvStatusTitle.setText("ACCESS DENIED • INVALID QR");
         }
 
-        binding.tvStatusDetails.setText("Student: " + studentName + " (" + studentId + ")\nType: Campus Entry");
-        binding.tvQueueStatus.setText("✓ Saved to SQLite queue (" + unsyncedCount + " unsynced)");
+        binding.tvStatusDetails.setText("Student: " + studentName + " (" + studentId + ")");
+    }
+
+    private void loadTodayScannedAccounts() {
+        todayScansList.clear();
+        List<ScanRecordEntity> scans = repository.getAllScans();
+
+        if (scans.isEmpty()) {
+            todayScansList.add("No scans logged today.");
+        } else {
+            for (ScanRecordEntity scan : scans) {
+                String timeStr = timeFormat.format(new Date(scan.getTimestamp()));
+                todayScansList.add(timeStr + " — " + scan.getStudentName() + " (" + scan.getStudentId() + ") [" + scan.getAttendanceStatus() + "]");
+            }
+        }
+        todayScansAdapter.notifyDataSetChanged();
     }
 
     private void toggleFlash() {

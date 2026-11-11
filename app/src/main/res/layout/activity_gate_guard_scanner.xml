@@ -1,29 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
-
-    <!-- CameraX Viewfinder -->
-    <androidx.camera.view.PreviewView
-        android:id="@+id/previewView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <!-- Scanning Overlay Guide Frame -->
-    <View
-        android:layout_width="260dp"
-        android:layout_height="260dp"
-        android:layout_centerInParent="true"
-        android:background="@android:color/transparent" />
+    android:background="#F5F7FA"
+    android:orientation="vertical">
 
     <!-- Top Action Bar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="#99000000"
+        android:background="#2E7D32"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="16dp">
@@ -47,60 +34,68 @@
             app:strokeColor="#FFFFFF" />
     </LinearLayout>
 
-    <!-- Bottom Status Banner -->
-    <LinearLayout
+    <!-- Camera Preview Viewfinder -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:background="#000000" />
+
+    <!-- Dynamic Scan Feedback Banner -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardFeedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#F5F7FA"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:layout_margin="12dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="#2E7D32"
+        app:cardCornerRadius="10dp">
 
-        <!-- Dynamic Scan Feedback Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardFeedback"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:cardBackgroundColor="#2E7D32"
-            app:cardCornerRadius="12dp">
+            android:orientation="vertical"
+            android:padding="12dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tvStatusTitle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:text="ENTRY APPROVED"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/tvStatusTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ENTRY APPROVED • ON TIME"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvStatusDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Student Details"
+                android:textColor="#E8F5E9"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
-                <TextView
-                    android:id="@+id/tvStatusDetails"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Student Details"
-                    android:textColor="#E8F5E9"
-                    android:textSize="14sp" />
+    <!-- Today's Previously Scanned Accounts Section -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
+        android:text="Today's Scanned Accounts"
+        android:textColor="#37474F"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/tvQueueStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="✓ Saved to local SQLite queue"
-                    android:textColor="#C8E6C9"
-                    android:textSize="12sp"
-                    android:textStyle="italic" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+    <ListView
+        android:id="@+id/listViewTodayScans"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="6dp"
+        android:paddingHorizontal="12dp" />
 
-    </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>

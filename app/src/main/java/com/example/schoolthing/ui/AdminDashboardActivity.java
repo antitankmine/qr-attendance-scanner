@@ -1,28 +1,35 @@
 package com.example.schoolthing.ui;
 
+import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.schoolthing.data.local.ScanRecordEntity;
-import com.example.schoolthing.data.repository.AttendanceRepository;
+import com.example.schoolthing.R;
+import com.example.schoolthing.data.model.SystemConfig;
+import com.example.schoolthing.data.model.UserRole;
+import com.example.schoolthing.data.remote.FirebaseManager;
 import com.example.schoolthing.databinding.ActivityAdminDashboardBinding;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
 /**
- * Admin Console Activity for viewing audit logs, monitoring offline queue, and triggering sync.
+ * Admin Console Activity supporting interactive TimePicker threshold setters,
+ * account creation/revocation, and active on-campus scan reports.
  */
 public class AdminDashboardActivity extends AppCompatActivity {
 
     private ActivityAdminDashboardBinding binding;
-    private AttendanceRepository repository;
-    private final List<String> logList = new ArrayList<>();
-    private ArrayAdapter<String> adapter;
-    private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+    private final List<String> activeCampusList = new ArrayList<>();
+    private ArrayAdapter<String> activeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,51 +37,156 @@ public class AdminDashboardActivity extends AppCompatActivity {
         binding = ActivityAdminDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        repository = new AttendanceRepository(this);
+        activeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, activeCampusList);
+        binding.listViewActiveCampus.setAdapter(activeAdapter);
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, logList);
-        binding.listViewAuditLogs.setAdapter(adapter);
+        binding.btnCreateAccount.setOnClickListener(v -> showCreateAccountDialog());
+        binding.btnDeleteAccount.setOnClickListener(v -> showRevokeAccountDialog());
+        binding.btnSaveThresholds.setOnClickListener(v -> saveThresholdSettings());
 
-        refreshDashboard();
+        binding.etLateThreshold.setOnClickListener(v -> showTimePickerDialog(binding.etLateThreshold));
+        binding.etAbsentThreshold.setOnClickListener(v -> showTimePickerDialog(binding.etAbsentThreshold));
 
-        binding.btnTriggerSync.setOnClickListener(v -> {
-            Toast.makeText(this, "Syncing pending scans with Spring Boot backend...", Toast.LENGTH_SHORT).show();
-            repository.triggerSync(new AttendanceRepository.SyncCallback() {
-                @Override
-                public void onSyncComplete(int syncedCount, String message) {
-                    runOnUiThread(() -> {
-                        Toast.makeText(AdminDashboardActivity.this, message, Toast.LENGTH_LONG).show();
-                        refreshDashboard();
-                    });
-                }
+        loadActiveOnCampusReport();
+    }
 
-                @Override
-                public void onSyncFailed(String errorMessage) {
-                    runOnUiThread(() -> {
-                        Toast.makeText(AdminDashboardActivity.this, errorMessage, Toast.LENGTH_LONG).show();
-                        refreshDashboard();
-                    });
-                }
-            });
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadActiveOnCampusReport();
+    }
+
+    private void showTimePickerDialog(EditText targetEditText) {
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, (view, selectedHour, selectedMinute) -> {
+            String amPm = selectedHour >= 12 ? "PM" : "AM";
+            int hour12 = selectedHour % 12;
+            if (hour12 == 0) hour12 = 12;
+
+            String timeStr = String.format(Locale.US, "%02d:%02d %s", hour12, selectedMinute, amPm);
+            targetEditText.setText(timeStr);
+        }, hour, minute, false);
+
+        timePickerDialog.show();
+    }
+
+    private void showCreateAccountDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Create Account");
+
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_create_admin_account, null);
+        EditText etName = dialogView.findViewById(R.id.etAdminName);
+        EditText etId = dialogView.findViewById(R.id.etAdminId);
+        EditText etEmail = dialogView.findViewById(R.id.etAdminEmail);
+        EditText etPass = dialogView.findViewById(R.id.etAdminPassword);
+        Spinner spinnerRole = dialogView.findViewById(R.id.spinnerAdminRole);
+
+        String[] roles = new String[]{
+                UserRole.STUDENT.getDisplayName(),
+                UserRole.GATE_GUARD.getDisplayName(),
+                UserRole.TEACHER.getDisplayName(),
+                UserRole.ADMINISTRATOR.getDisplayName()
+        };
+        ArrayAdapter<String> roleAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, roles);
+        spinnerRole.setAdapter(roleAdapter);
+
+        builder.setView(dialogView);
+        builder.setPositiveButton("Create", (dialog, which) -> {
+            String name = etName.getText().toString().trim();
+            String id = etId.getText().toString().trim();
+            String email = etEmail.getText().toString().trim();
+            String pass = etPass.getText().toString().trim();
+            int rolePos = spinnerRole.getSelectedItemPosition();
+
+            if (!name.isEmpty() && !id.isEmpty() && !email.isEmpty() && !pass.isEmpty()) {
+                UserRole role = UserRole.values()[rolePos];
+                FirebaseManager.getInstance().createAccount(this, name, id, email, pass, role, new FirebaseManager.Callback<Boolean>() {
+                    @Override
+                    public void onSuccess(Boolean result) {
+                        Toast.makeText(AdminDashboardActivity.this, "Created account for " + name, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(String errorMessage) {
+                        Toast.makeText(AdminDashboardActivity.this, "Error: " + errorMessage, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+        builder.show();
+    }
+
+    private void showRevokeAccountDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Revoke Account");
+
+        final EditText input = new EditText(this);
+        input.setHint("Enter Student or Staff ID Number");
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+
+        builder.setPositiveButton("Revoke / Delete", (dialog, which) -> {
+            String targetId = input.getText().toString().trim();
+            if (!targetId.isEmpty()) {
+                FirebaseManager.getInstance().revokeOrDeleteAccount(this, targetId, new FirebaseManager.Callback<Boolean>() {
+                    @Override
+                    public void onSuccess(Boolean result) {
+                        Toast.makeText(AdminDashboardActivity.this, "Account " + targetId + " revoked successfully.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(String errorMessage) {
+                        Toast.makeText(AdminDashboardActivity.this, "Error: " + errorMessage, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+        builder.show();
+    }
+
+    private void saveThresholdSettings() {
+        String lateTimeStr = binding.etLateThreshold.getText() != null ? binding.etLateThreshold.getText().toString().trim() : "08:15 AM";
+        String absentTimeStr = binding.etAbsentThreshold.getText() != null ? binding.etAbsentThreshold.getText().toString().trim() : "08:30 AM";
+
+        SystemConfig config = new SystemConfig(lateTimeStr, absentTimeStr);
+        FirebaseManager.getInstance().updateThresholdConfig(this, config, new FirebaseManager.Callback<Boolean>() {
+            @Override
+            public void onSuccess(Boolean result) {
+                Toast.makeText(AdminDashboardActivity.this, "Cutoff time settings saved (" + lateTimeStr + " / " + absentTimeStr + ")", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                Toast.makeText(AdminDashboardActivity.this, "Error saving settings: " + errorMessage, Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
-    private void refreshDashboard() {
-        int unsyncedCount = repository.getUnsyncedCount();
-        binding.tvUnsyncedQueueCount.setText("Offline Queue: " + unsyncedCount + " Pending Syncs");
-
-        logList.clear();
-        List<ScanRecordEntity> records = repository.getAllScans();
-        if (records.isEmpty()) {
-            logList.add("No scan activity recorded yet.");
-        } else {
-            for (ScanRecordEntity record : records) {
-                String timeStr = dateFormat.format(new Date(record.getTimestamp()));
-                String syncBadge = record.isSynced() ? "[SYNCED]" : "[QUEUED OFFLINE]";
-                logList.add(syncBadge + " " + timeStr + " — " + record.getStudentName()
-                        + " (" + record.getStudentId() + ") : " + record.getAttendanceStatus());
+    private void loadActiveOnCampusReport() {
+        activeCampusList.clear();
+        FirebaseManager.getInstance().fetchActiveOnCampus(this, new FirebaseManager.Callback<List<String>>() {
+            @Override
+            public void onSuccess(List<String> result) {
+                if (result.isEmpty()) {
+                    activeCampusList.add("No active accounts currently on-campus.");
+                } else {
+                    activeCampusList.addAll(result);
+                }
+                activeAdapter.notifyDataSetChanged();
             }
-        }
-        adapter.notifyDataSetChanged();
+
+            @Override
+            public void onError(String errorMessage) {
+                activeCampusList.add("Error loading report.");
+                activeAdapter.notifyDataSetChanged();
+            }
+        });
     }
 }

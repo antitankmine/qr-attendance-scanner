@@ -19,16 +19,16 @@ public class ScanRecordTest {
     public void testScanRecordEntityProperties() {
         long now = System.currentTimeMillis();
         ScanRecordEntity record = new ScanRecordEntity(
-                "STU-2026-9812",
-                "Alex Rivera",
+                "STU-1001",
+                "User One",
                 now,
                 AttendanceType.CAMPUS_ENTRY.name(),
                 AttendanceStatus.PRESENT.name(),
                 false
         );
 
-        assertEquals("STU-2026-9812", record.getStudentId());
-        assertEquals("Alex Rivera", record.getStudentName());
+        assertEquals("STU-1001", record.getStudentId());
+        assertEquals("User One", record.getStudentName());
         assertEquals(now, record.getTimestamp());
         assertEquals("CAMPUS_ENTRY", record.getAttendanceType());
         assertEquals("PRESENT", record.getAttendanceStatus());

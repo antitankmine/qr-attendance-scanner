@@ -1,15 +1,20 @@
 *.iml
 .gradle
 /local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+local.properties
+/.idea/
 .DS_Store
 /build
 /captures
 .externalNativeBuild
 .cxx
-local.properties
+
+# Sensitive files & credentials - DO NOT push to Git
+google-services.json
+app/google-services.json
+*.keystore
+*.jks
+*.pk8
+*.pem
+secrets.properties
+*.secret
