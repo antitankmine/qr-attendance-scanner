@@ -1,43 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#F0F4F8"
     android:orientation="vertical"
     android:padding="20dp">
 
-    <EditText
-        android:id="@+id/etStudentName"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_full_name"
-        android:inputType="textPersonName"
-        android:autofillHints="name"  />
+        app:boxStrokeColor="#6366F1"
+        app:hintTextColor="#6366F1"
+        app:startIconDrawable="@android:drawable/ic_menu_myplaces"
+        app:startIconTint="#6366F1">
 
-    <EditText
-        android:id="@+id/etStudentId"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etStudentName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="name"
+            android:inputType="textPersonName"
+            android:textColor="#1F2937" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="14dp"
         android:hint="@string/hint_student_staff_id"
-        android:inputType="text"
-        android:importantForAutofill="no"  />
+        app:boxStrokeColor="#06B6D4"
+        app:hintTextColor="#06B6D4"
+        app:startIconDrawable="@android:drawable/ic_menu_info_details"
+        app:startIconTint="#06B6D4">
 
-    <EditText
-        android:id="@+id/etStudentEmail"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etStudentId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textColor="#1F2937" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="14dp"
         android:hint="@string/hint_email_address"
-        android:inputType="textEmailAddress"
-        android:autofillHints="emailAddress"  />
+        app:boxStrokeColor="#10B981"
+        app:hintTextColor="#10B981"
+        app:startIconDrawable="@android:drawable/ic_dialog_email"
+        app:startIconTint="#10B981">
 
-    <EditText
-        android:id="@+id/etStudentPassword"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etStudentEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="emailAddress"
+            android:inputType="textEmailAddress"
+            android:textColor="#1F2937" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="14dp"
         android:hint="@string/hint_password"
-        android:inputType="textPassword"
-        android:autofillHints="password"  />
+        app:boxStrokeColor="#8B5CF6"
+        app:endIconTint="#8B5CF6"
+        app:hintTextColor="#8B5CF6"
+        app:passwordToggleEnabled="true"
+        app:startIconDrawable="@android:drawable/ic_lock_lock"
+        app:startIconTint="#8B5CF6">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etStudentPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="password"
+            android:inputType="textPassword"
+            android:textColor="#1F2937" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </LinearLayout>

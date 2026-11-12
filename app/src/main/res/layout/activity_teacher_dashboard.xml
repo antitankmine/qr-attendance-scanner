@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F7FA"
+    android:background="#ffffff"
     android:orientation="vertical"
     android:padding="20dp">
 
@@ -13,14 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        app:cardBackgroundColor="#F57F17"
-        app:cardCornerRadius="14dp">
+        app:cardBackgroundColor="#2D6A4F"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:strokeWidth="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="22dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -33,18 +35,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                tools:text="CS 101 • Data Structures &amp; Algorithms"
-                android:textColor="#FFFDE7"
-                android:textSize="15sp" />
+                android:layout_marginTop="6dp"
+                android:textColor="#E8F5E9"
+                android:textSize="15sp"
+                tools:text="CS 101 • Data Structures &amp; Algorithms" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                tools:text="Room 302 • Schedule: 08:00 AM - 10:00 AM"
-                android:textColor="#FFFDE7"
-                android:textSize="13sp" />
+                android:layout_marginTop="3dp"
+                android:textColor="#C8E6C9"
+                android:textSize="13sp"
+                tools:text="Room 302 • Schedule: 08:00 AM - 10:00 AM" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -52,16 +54,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="18dp"
         android:orientation="horizontal">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
+            android:layout_marginEnd="6dp"
             android:layout_weight="1"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="2dp">
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:strokeColor="#E2E8F0"
+            app:strokeWidth="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -74,27 +79,32 @@
                     android:id="@+id/tvPresentCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="2"
-                    android:textColor="#2E7D32"
+                    android:textColor="#2D6A4F"
                     android:textSize="22sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:text="2" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
                     android:text="@string/label_present"
-                    android:textColor="#616161"
-                    android:textSize="12sp" />
+                    android:textColor="#718096"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="4dp"
+            android:layout_marginHorizontal="6dp"
             android:layout_weight="1"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="2dp">
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:strokeColor="#E2E8F0"
+            app:strokeWidth="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -107,27 +117,32 @@
                     android:id="@+id/tvLateCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="1"
-                    android:textColor="#F57F17"
+                    android:textColor="#D97706"
                     android:textSize="22sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:text="1" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
                     android:text="@string/label_late"
-                    android:textColor="#616161"
-                    android:textSize="12sp" />
+                    android:textColor="#718096"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="6dp"
             android:layout_weight="1"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="2dp">
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:strokeColor="#E2E8F0"
+            app:strokeWidth="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -140,17 +155,19 @@
                     android:id="@+id/tvUnexcusedCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="0"
-                    android:textColor="#C62828"
+                    android:textColor="#DC2626"
                     android:textSize="22sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:text="0" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
                     android:text="@string/label_unexcused"
-                    android:textColor="#616161"
-                    android:textSize="12sp" />
+                    android:textColor="#718096"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
@@ -158,9 +175,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/roster_section_title"
-        android:textColor="#37474F"
+        android:textColor="#000000"
         android:textSize="16sp"
         android:textStyle="bold" />
 
