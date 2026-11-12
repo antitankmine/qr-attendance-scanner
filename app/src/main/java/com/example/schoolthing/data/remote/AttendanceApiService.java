@@ -12,9 +12,9 @@ import retrofit2.http.POST;
 public interface AttendanceApiService {
 
     class SyncResponse {
-        private boolean success;
-        private String message;
-        private List<Long> syncedIds;
+        private final boolean success;
+        private final String message;
+        private final List<Long> syncedIds;
 
         public SyncResponse(boolean success, String message, List<Long> syncedIds) {
             this.success = success;
