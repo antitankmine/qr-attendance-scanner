@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1d1d21"
@@ -25,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:letterSpacing="0.12"
-                android:text="STUDENT ATTENDANCE SYSTEM"
+                android:text="@string/student_attendance_system"
                 android:textColor="#FFFFFF"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -120,7 +121,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
-                    android:text="Refreshes in: 30s"
+                    tools:text="Refreshes in: 30s"
                     android:textColor="#D32F2F"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -141,9 +142,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:letterSpacing="0.04"
-                    android:text="QR CODE AUTOMATICALLY REFRESHES"
+                    android:text="@string/qr_auto_refresh_notice"
                     android:textColor="#181A1D"
-                    android:textSize="10sp"
+                    android:textSize="11sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -182,7 +183,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:letterSpacing="0.04"
-                        android:text="STUDENT INFORMATION"
+                        android:text="@string/student_info_header"
                         android:textColor="#181A1D"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -195,7 +196,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Student Name"
+                    tools:text="Student Name"
                     android:textColor="#181A1D"
                     android:textSize="17sp"
                     android:textStyle="bold" />
@@ -206,7 +207,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
-                    android:text="ID: STU-0000"
+                    tools:text="ID: STU-0000"
                     android:textColor="#181A1D"
                     android:textSize="14sp" />
 
@@ -259,7 +260,9 @@
                     android:background="@android:color/transparent"
                     android:cacheColorHint="@android:color/transparent"
                     android:divider="#FFFFFF"
-                    android:dividerHeight="1dp" />
+                    android:dividerHeight="1dp"
+                    android:nestedScrollingEnabled="true"
+                    tools:ignore="NestedScrolling"  />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -272,9 +275,9 @@
             android:layout_marginBottom="12dp"
             android:gravity="center"
             android:letterSpacing="0.04"
-            android:text="SMART ATTENDANCE SYSTEM"
+            android:text="@string/smart_attendance_footer"
             android:textColor="#E0E0E0"
-            android:textSize="10sp" />
+            android:textSize="11sp" />
 
     </LinearLayout>
 </ScrollView>

@@ -55,4 +55,10 @@
     <string name="btn_change_password">Change Password</string>
     <string name="my_attendance_history">My Attendance History</string>
 
+    <!-- Redesigned Student QR Screen Labels -->
+    <string name="student_attendance_system">STUDENT ATTENDANCE SYSTEM</string>
+    <string name="qr_auto_refresh_notice">QR CODE AUTOMATICALLY REFRESHES</string>
+    <string name="student_info_header">STUDENT INFORMATION</string>
+    <string name="smart_attendance_footer">SMART ATTENDANCE SYSTEM</string>
+
 </resources>
