@@ -24,11 +24,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:letterSpacing="0.12"
                 android:text="STUDENT ATTENDANCE SYSTEM"
                 android:textColor="#FFFFFF"
                 android:textSize="13sp"
-                android:textStyle="bold"
-                android:letterSpacing="0.12" />
+                android:textStyle="bold" />
 
             <!-- Red and Blue Brand Accent -->
             <LinearLayout
@@ -55,17 +55,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
-                android:text="STUDENT DYNAMIC PASS"
+                android:letterSpacing="0.03"
+                android:text="@string/student_pass_title"
                 android:textColor="#FFFFFF"
                 android:textSize="22sp"
-                android:textStyle="bold"
-                android:letterSpacing="0.03" />
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="Secure Digital Student Identification"
+                android:text="@string/student_pass_subtitle"
                 android:textColor="#E0E0E0"
                 android:textSize="13sp" />
 
@@ -91,11 +91,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="YOUR ATTENDANCE QR CODE"
+                    android:letterSpacing="0.05"
+                    android:text="@string/qr_code_desc"
                     android:textColor="#181A1D"
                     android:textSize="13sp"
-                    android:textStyle="bold"
-                    android:letterSpacing="0.05" />
+                    android:textStyle="bold" />
 
                 <!-- QR CODE IMAGE -->
                 <FrameLayout
@@ -109,7 +109,7 @@
                         android:id="@+id/imgQrCode"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:contentDescription="Student Dynamic QR Code"
+                        android:contentDescription="@string/qr_code_desc"
                         android:scaleType="fitCenter" />
 
                 </FrameLayout>
@@ -133,18 +133,18 @@
                     android:layout_marginTop="10dp"
                     android:max="30"
                     android:progress="30"
-                    android:progressTint="#1976D2"
-                    android:progressBackgroundTint="#FFFFFF" />
+                    android:progressBackgroundTint="#FFFFFF"
+                    android:progressTint="#1976D2" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
+                    android:letterSpacing="0.04"
                     android:text="QR CODE AUTOMATICALLY REFRESHES"
                     android:textColor="#181A1D"
                     android:textSize="10sp"
-                    android:textStyle="bold"
-                    android:letterSpacing="0.04" />
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -181,11 +181,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
+                        android:letterSpacing="0.04"
                         android:text="STUDENT INFORMATION"
                         android:textColor="#181A1D"
                         android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:letterSpacing="0.04" />
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -195,7 +195,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Student: Alex Rivera"
+                    android:text="Student Name"
                     android:textColor="#181A1D"
                     android:textSize="17sp"
                     android:textStyle="bold" />
@@ -206,32 +206,60 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
-                    android:text="ID: STU-2026-9812"
+                    android:text="ID: STU-0000"
                     android:textColor="#181A1D"
                     android:textSize="14sp" />
 
-                <!-- VERIFICATION STATUS -->
-                <com.google.android.material.card.MaterialCardView
+                <!-- CHANGE PASSWORD BUTTON -->
+                <Button
+                    android:id="@+id/btnChangePassword"
+                    style="@style/Widget.Material3.Button"
                     android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="14dp"
+                    android:text="@string/btn_change_password"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    app:backgroundTint="#1976D2"
+                    app:cornerRadius="10dp" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ATTENDANCE HISTORY CARD -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            app:cardBackgroundColor="#E0E0E0"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="3dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:cardBackgroundColor="#1976D2"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="0dp"
-                    app:strokeWidth="0dp">
+                    android:letterSpacing="0.04"
+                    android:text="@string/my_attendance_history"
+                    android:textColor="#181A1D"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:padding="12dp"
-                        android:text="ACTIVE • VERIFIED STUDENT"
-                        android:textColor="#FFFFFF"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:letterSpacing="0.04" />
-
-                </com.google.android.material.card.MaterialCardView>
+                <ListView
+                    android:id="@+id/listViewStudentLogs"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@android:color/transparent"
+                    android:cacheColorHint="@android:color/transparent"
+                    android:divider="#FFFFFF"
+                    android:dividerHeight="1dp" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -243,11 +271,10 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="12dp"
             android:gravity="center"
+            android:letterSpacing="0.04"
             android:text="SMART ATTENDANCE SYSTEM"
             android:textColor="#E0E0E0"
-            android:textSize="10sp"
-            android:letterSpacing="0.04" />
-
+            android:textSize="10sp" />
 
     </LinearLayout>
 </ScrollView>

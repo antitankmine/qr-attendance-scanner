@@ -50,11 +50,46 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
+    <!-- ACTION BUTTONS ROW -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnCreateStudent"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:text="Create Student"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:backgroundTint="#2D6A4F"
+            app:cornerRadius="10dp" />
+
+        <Button
+            android:id="@+id/btnScanQrLookup"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="6dp"
+            android:layout_weight="1"
+            android:text="Scan QR Lookup"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:backgroundTint="#1976D2"
+            app:cornerRadius="10dp" />
+
+    </LinearLayout>
+
     <!-- Summary Stats Row -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="18dp"
+        android:layout_marginBottom="14dp"
         android:orientation="horizontal">
 
         <com.google.android.material.card.MaterialCardView
@@ -171,6 +206,22 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
+
+    <!-- SEARCH BAR -->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:hint="Search student name or ID">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etStudentSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:textColor="#181A1D" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:layout_width="wrap_content"
