@@ -5,7 +5,6 @@
     <string name="label_present">Present</string>
     <string name="label_late">Late</string>
     <string name="label_unexcused">Unexcused</string>
-    <string name="label_excused">Excused</string>
     <string name="roster_section_title">Class Roster &amp; Exception Overrides</string>
 
     <!-- Admin Dashboard Static Labels -->
