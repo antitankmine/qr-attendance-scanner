@@ -7,6 +7,7 @@
         <item name="colorSecondary">#2E7D32</item>
         <item name="colorOnSecondary">#FFFFFF</item>
         <item name="android:statusBarColor">#1976D2</item>
+        <item name="android:windowBackground">#1d1d21</item>
     </style>
 
 </resources>

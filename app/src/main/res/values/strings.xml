@@ -19,10 +19,6 @@
 <string name="label_absent_cutoff">Absent Cutoff Time</string>
 <string name="btn_save_cutoff">Save Cutoff Time Settings</string>
 
-    <!-- Gate Guard Scanner Static Labels -->
-    <string name="gate_guard_title">Gate Guard Scanner</string>
-    <string name="btn_flash">Flash</string>
-    <string name="todays_scanned_accounts">Today\'s Scanned Accounts</string>
 
     <!-- Login Screen Static Labels -->
     <string name="login_title">QR Attendance</string>
@@ -32,13 +28,6 @@
     <string name="label_select_role">Select Portal Role</string>
     <string name="btn_log_in">Log In</string>
     <string name="prompt_sign_up">Don\'t have an account? Sign Up</string>
-
-    <!-- Main Screen Static Labels -->
-    <string name="main_header_title">QR Attendance Scanner</string>
-    <string name="select_role_portal">Select Role Portal</string>
-    <string name="role_student_pass">Student Dynamic Pass</string>
-    <string name="role_teacher_dashboard">Teacher Dashboard</string>
-    <string name="role_admin_console">Admin Console</string>
 
     <!-- Sign Up Screen Static Labels -->
     <string name="signup_subtitle">Register your user profile &amp; role</string>
@@ -60,5 +49,15 @@
     <string name="qr_auto_refresh_notice">QR CODE AUTOMATICALLY REFRESHES</string>
     <string name="student_info_header">STUDENT INFORMATION</string>
     <string name="smart_attendance_footer">SMART ATTENDANCE SYSTEM</string>
+
+    <!-- Redesigned Gate Guard Scanner Labels -->
+    <string name="align_qr_instruction">ALIGN QR CODE WITHIN FRAME</string>
+    <string name="position_qr_instruction">Position the student\'s QR code to scan</string>
+    <string name="gate_guard_header">GATE GUARD SCANNER</string>
+    <string name="attendance_monitoring_sub">ATTENDANCE MONITORING SYSTEM</string>
+    <string name="btn_flash_upper">FLASH</string>
+    <string name="scan_result_header">SCAN RESULT</string>
+    <string name="todays_scanned_upper">TODAY\'S SCANNED ACCOUNTS</string>
+
 
 </resources>
